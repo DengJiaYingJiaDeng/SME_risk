@@ -1,0 +1,19 @@
+{
+  "split_cutoff_date": "2021-02-21",
+  "n_train_loans": 54,
+  "n_test_loans": 36,
+  "train_events": 9,
+  "test_events": 3,
+  "n_train_intervals": 605,
+  "n_test_intervals": 390,
+  "n_features": 31,
+  "train_c_index": 0.7120253164556962,
+  "test_c_index": 0.654320987654321,
+  "warning_threshold_global": 0.10866434578093997,
+  "warning_precision": 0.05555555555555555,
+  "warning_recall": 0.5,
+  "warning_f1": 0.1,
+  "warning_avg_precision": 0.2329710144927536,
+  "warning_roc_auc": 0.8835714285714285,
+  "warning_positive_rate": 0.011299435028248588
+}
