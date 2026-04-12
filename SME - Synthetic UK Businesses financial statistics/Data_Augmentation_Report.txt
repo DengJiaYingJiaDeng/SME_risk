@@ -1,0 +1,22 @@
+﻿Data Augmentation Summary (Real-Signal Expansion)
+snapshot_date=2024-02-29
+
+[Loan base] rows=90
+hard_default_events=12
+distress_events_added=17
+augmented_total_events=29
+event_type_counts={'censored': 61, 'hard_default': 12, 'distress_origination': 11, 'distress_behavior': 6}
+
+[Loan time-varying augmented] rows=816
+loan_count=90
+interval_events=29
+
+[Auxiliary enterprise dataset] rows=1000
+company_count=1000
+aux_risk_positive=367
+aux_risk_rate=0.3670
+
+files:
+- Loan_Augmented_RealSignals.csv
+- Loan_Augmented_TimeVarying.csv
+- SME_Auxiliary_Risk_Pretrain.csv

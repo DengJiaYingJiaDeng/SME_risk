@@ -1,0 +1,11 @@
+{
+  "data_dir": "E:\\my model\\SME_model\\SME - Synthetic UK Businesses financial statistics",
+  "output_dir": "E:\\my model\\SME_model\\sme_dynamic_cox_project\\outputs",
+  "snapshot_date": "2024-02-29",
+  "test_size": 0.3,
+  "penalizer": 0.25,
+  "l1_ratio": 0.0,
+  "warning_horizon_days": 90,
+  "decision_horizon_days": 180
+}
+
