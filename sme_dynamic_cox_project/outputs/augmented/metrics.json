@@ -1,0 +1,20 @@
+{
+  "loan_file_name": "Loan_Augmented_RealSignals.csv",
+  "split_cutoff_date": "2021-05-21",
+  "n_train_loans": 63,
+  "n_test_loans": 27,
+  "train_events": 17,
+  "test_events": 12,
+  "n_train_intervals": 652,
+  "n_test_intervals": 164,
+  "n_features": 31,
+  "train_c_index": 0.8119533527696793,
+  "test_c_index": 0.6884057971014492,
+  "warning_threshold_global": 0.16612130818402587,
+  "warning_precision": 0.34782608695652173,
+  "warning_recall": 0.6666666666666666,
+  "warning_f1": 0.45714285714285713,
+  "warning_avg_precision": 0.5510659604409605,
+  "warning_roc_auc": 0.9066666666666666,
+  "warning_positive_rate": 0.08759124087591241
+}

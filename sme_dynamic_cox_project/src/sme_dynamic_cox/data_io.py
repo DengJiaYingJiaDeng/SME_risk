@@ -44,10 +44,10 @@ def _to_datetime(df: pd.DataFrame, columns: list[str]) -> pd.DataFrame:
     return df
 
 
-def load_all_tables(data_dir: Path) -> Dict[str, pd.DataFrame]:
+def load_all_tables(data_dir: Path, loan_file_name: str = "Loan.csv") -> Dict[str, pd.DataFrame]:
     required = {
         "businesses": "Businesses.csv",
-        "loan": "Loan.csv",
+        "loan": loan_file_name,
         "credit_rating": "Credit_Rating.csv",
         "credit_account": "Credit_Account_History.csv",
         "credit_card": "Credit_Card_History.csv",
@@ -69,7 +69,15 @@ def load_all_tables(data_dir: Path) -> Dict[str, pd.DataFrame]:
 
     tables["loan"] = _to_datetime(
         tables["loan"],
-        ["loan_start_date", "loan_date_due_to_close", "loan_default_date", "loan_satisfaction_date"],
+        [
+            "loan_start_date",
+            "loan_date_due_to_close",
+            "loan_default_date",
+            "loan_satisfaction_date",
+            "obs_end_date",
+            "credit_report_date",
+            "event_date_augmented",
+        ],
     )
     tables["loan"] = _to_numeric(
         tables["loan"],
@@ -80,6 +88,15 @@ def load_all_tables(data_dir: Path) -> Dict[str, pd.DataFrame]:
             "loan_amount_outstanding_including_future_interest",
             "loan",
             "overdraft",
+            "is_overdraft",
+            "is_term_loan",
+            "total_time_payments_late",
+            "event_hard_default",
+            "event_distress",
+            "event_augmented",
+            "behavior_distress_flag",
+            "origination_credit_distress_flag",
+            "duration_augmented_days",
         ],
     )
 

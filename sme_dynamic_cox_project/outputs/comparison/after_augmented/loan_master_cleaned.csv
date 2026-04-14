@@ -1,0 +1,91 @@
+﻿loan_key,company_reg_number,industry_group,loan_start_date,obs_end_date,event_date,event,event_time,duration_days,loan_original_amount,interest,loan_number_of_missed_payments,total_time_payments_late,behavior_distress_flag,origination_credit_distress_flag,is_overdraft,is_term_loan,loan_status,loan_repayment_frequency
+20000000_Overdraft_1,20000000,47 : Retail,2020-03-28,2021-03-28,,0,inf,366,41000,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000017_Overdraft_1,20000017,77-82 : Business administration & support services,2021-01-23,2021-02-05,2021-02-05,1,14.0,14,37400,0.0,0,0,0,0,1,0,Defaulted,Monthly
+20000031_Overdraft_1,20000031,49-53 : Transport & Storage (inc. postal),2021-01-23,2021-02-13,2021-02-13,1,22.0,22,26300,0.0,2,27,1,0,1,0,Repaid,Monthly
+20000034_Overdraft_1,20000034,46 : Wholesale,2019-12-24,2020-01-11,,0,inf,19,169850,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000034_Overdraft_2,20000034,46 : Wholesale,2020-07-02,2024-02-29,,0,inf,1338,201000,7.0,0,0,0,0,1,0,Available,Monthly
+20000056_Loan_1,20000056,"01-03 : Agriculture, forestry & fishing",2020-10-30,2021-05-30,,0,inf,213,27200,0.0,0,0,0,0,0,1,Repaid,Monthly
+20000068_Loan_1,20000068,58-63 : Information & communication,2020-10-09,2021-12-21,2021-12-21,1,439.0,439,17900,8.0,3,29,1,0,0,1,Disbursing,Monthly
+20000082_Overdraft_1,20000082,"69-75 : Professional, scientific & technical",2021-11-14,2021-12-13,2021-12-13,1,30.0,30,4150,0.0,0,0,0,1,1,0,Repaid,Weekly
+20000087_Overdraft_1,20000087,"69-75 : Professional, scientific & technical",2021-05-30,2021-06-18,,0,inf,20,16250,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000100_Overdraft_1,20000100,58-63 : Information & communication,2021-10-13,2021-11-11,2021-11-11,1,30.0,30,136900,0.0,0,0,0,1,1,0,Repaid,Monthly
+20000123_Overdraft_1,20000123,"69-75 : Professional, scientific & technical",2019-12-10,2020-03-01,,0,inf,83,147500,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000141_Overdraft_1,20000141,47 : Retail,2020-11-05,2021-02-19,,0,inf,107,19550,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000150_Overdraft_1,20000150,85 : Education,2020-09-17,2021-05-04,2021-05-04,1,230.0,230,70750,0.0,0,0,0,0,1,0,Defaulted,Weekly
+20000150_Overdraft_2,20000150,85 : Education,2021-06-14,2023-06-14,,0,inf,731,88300,17.0,0,0,0,0,1,0,Available,Monthly
+20000165_Overdraft_1,20000165,"90-99 : Arts, entertainment, recreation & other",2021-05-03,2022-05-03,,0,inf,366,19050,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000176_Overdraft_1,20000176,58-63 : Information & communication,2020-11-11,2021-11-11,,0,inf,366,6650,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000183_Overdraft_1,20000183,"90-99 : Arts, entertainment, recreation & other",2020-01-24,2020-04-22,,0,inf,90,25750,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000195_Overdraft_1,20000195,"69-75 : Professional, scientific & technical",2021-08-28,2021-09-11,,0,inf,15,19950,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000205_Overdraft_1,20000205,49-53 : Transport & Storage (inc. postal),2020-06-26,2021-04-02,,0,inf,281,43300,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000219_Loan_1,20000219,41-43 : Construction,2021-04-12,2021-04-27,,0,inf,16,33000,0.0,0,0,0,0,0,1,Repaid,Monthly
+20000221_Overdraft_1,20000221,47 : Retail,2021-08-20,2021-10-14,,0,inf,56,76050,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000230_Loan_1,20000230,"69-75 : Professional, scientific & technical",2021-04-10,2022-04-10,,0,inf,366,31200,0.0,0,0,0,0,0,1,Repaid,Monthly
+20000282_Overdraft_1,20000282,86-88 : Health,2020-11-16,2021-11-16,,0,inf,366,128150,0.0,0,0,0,0,1,0,Repaid,Weekly
+20000295_Overdraft_1,20000295,41-43 : Construction,2020-09-26,2023-09-26,,0,inf,1096,72900,13.0,0,0,0,0,1,0,Available,Monthly
+20000300_Overdraft_1,20000300,55-56 : Accommodation & food services,2021-05-19,2021-06-20,2021-06-20,1,33.0,33,172800,0.0,0,0,0,1,1,0,Defaulted,Monthly
+20000311_Overdraft_1,20000311,"69-75 : Professional, scientific & technical",2021-10-05,2022-10-05,,0,inf,366,22150,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000313_Overdraft_1,20000313,86-88 : Health,2020-08-14,2020-10-24,,0,inf,72,151600,0.0,0,0,0,0,1,0,Repaid,Weekly
+20000314_Loan_1,20000314,"69-75 : Professional, scientific & technical",2021-09-11,2021-09-15,,0,inf,5,34700,0.0,0,0,0,0,0,1,Repaid,Monthly
+20000315_Overdraft_1,20000315,64-66 : Finance & insurance,2021-04-13,2021-05-27,2021-05-27,1,45.0,45,0,0.0,2,23,1,1,1,0,Repaid,Monthly
+20000324_Overdraft_1,20000324,58-63 : Information & communication,2021-10-08,2021-11-01,,0,inf,25,78250,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000327_Overdraft_1,20000327,85 : Education,2020-10-18,2020-11-19,,0,inf,33,108000,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000334_Loan_1,20000334,41-43 : Construction,2020-08-06,2020-08-09,,0,inf,4,99450,0.0,0,0,0,0,0,1,Repaid,Monthly
+20000336_Overdraft_1,20000336,86-88 : Health,2020-08-22,2021-02-10,,0,inf,173,13500,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000346_Overdraft_1,20000346,58-63 : Information & communication,2020-11-29,2021-02-06,,0,inf,70,292950,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000359_Overdraft_1,20000359,"69-75 : Professional, scientific & technical",2021-11-24,2022-11-24,,0,inf,366,20300,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000382_Overdraft_1,20000382,46 : Wholesale,2021-10-17,2021-10-29,,0,inf,13,510850,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000385_Overdraft_1,20000385,46 : Wholesale,2021-06-11,2021-08-30,,0,inf,81,150200,0.0,1,4,0,0,1,0,Repaid,Monthly
+20000402_Overdraft_1,20000402,"69-75 : Professional, scientific & technical",2021-07-14,2021-09-24,,0,inf,73,28350,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000408_Overdraft_1,20000408,49-53 : Transport & Storage (inc. postal),2020-01-26,2020-05-11,,0,inf,107,32500,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000417_Loan_1,20000417,46 : Wholesale,2021-09-16,2021-10-13,,0,inf,28,277650,0.0,1,14,0,0,0,1,Repaid,Monthly
+20000423_Overdraft_1,20000423,77-82 : Business administration & support services,2020-04-07,2020-08-23,,0,inf,139,45700,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000425_Overdraft_1,20000425,"69-75 : Professional, scientific & technical",2020-08-06,2021-05-11,,0,inf,279,31050,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000435_Overdraft_1,20000435,"90-99 : Arts, entertainment, recreation & other",2021-02-17,2021-08-02,,0,inf,167,35700,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000439_Loan_1,20000439,"90-99 : Arts, entertainment, recreation & other",2020-12-29,2021-03-25,,0,inf,87,15550,0.0,0,0,0,0,0,1,Repaid,Monthly
+20000468_Loan_1,20000468,77-82 : Business administration & support services,2020-07-18,2024-02-29,,0,inf,1322,30950,8.0,0,0,0,0,0,1,Disbursing,Monthly
+20000472_Overdraft_1,20000472,47 : Retail,2020-12-14,2021-01-05,,0,inf,23,43400,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000478_Overdraft_1,20000478,47 : Retail,2020-10-30,2021-02-20,2021-02-20,1,114.0,114,23800,0.0,0,0,0,0,1,0,Defaulted,Monthly
+20000482_Overdraft_1,20000482,55-56 : Accommodation & food services,2021-09-30,2024-02-29,,0,inf,883,18900,10.0,0,0,0,0,1,0,Available,Monthly
+20000494_Loan_1,20000494,41-43 : Construction,2021-06-23,2021-08-19,,0,inf,58,484700,0.0,0,0,0,0,0,1,Repaid,Monthly
+20000520_Loan_1,20000520,"01-03 : Agriculture, forestry & fishing",2021-11-13,2021-12-12,2021-12-12,1,30.0,30,103950,6.0,0,0,0,1,0,1,Disbursing,Monthly
+20000543_Overdraft_1,20000543,58-63 : Information & communication,2021-01-21,2021-03-11,2021-03-11,1,50.0,50,18950,0.0,1,13,0,0,1,0,Defaulted,Monthly
+20000548_Loan_1,20000548,"69-75 : Professional, scientific & technical",2020-12-23,2021-02-07,2021-02-07,1,47.0,47,16700,0.0,0,0,0,0,0,1,Defaulted,Monthly
+20000559_Overdraft_1,20000559,77-82 : Business administration & support services,2021-02-21,2021-06-16,2021-06-16,1,116.0,116,34850,0.0,0,0,0,0,1,0,Defaulted,Monthly
+20000571_Overdraft_1,20000571,58-63 : Information & communication,2020-06-26,2021-02-02,,0,inf,222,33700,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000594_Overdraft_1,20000594,45 : Motor trades,2021-05-25,2021-12-30,2021-12-30,1,220.0,220,36600,0.0,2,19,1,0,1,0,Repaid,Monthly
+20000618_Overdraft_1,20000618,58-63 : Information & communication,2021-08-20,2021-09-18,2021-09-18,1,30.0,30,111300,0.0,1,6,0,1,1,0,Repaid,Monthly
+20000641_Overdraft_1,20000641,41-43 : Construction,2020-04-30,2020-09-08,,0,inf,132,89900,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000657_Overdraft_1,20000657,58-63 : Information & communication,2020-06-29,2022-06-29,,0,inf,731,42450,6.0,0,0,0,0,1,0,Available,Monthly
+20000660_Loan_1,20000660,"90-99 : Arts, entertainment, recreation & other",2020-10-05,2020-12-28,2020-12-28,1,85.0,85,11800,0.0,3,38,1,0,0,1,Repaid,Monthly
+20000661_Loan_1,20000661,47 : Retail,2021-01-27,2021-06-01,,0,inf,126,329550,0.0,0,0,0,0,0,1,Repaid,Monthly
+20000663_Overdraft_1,20000663,"01-03 : Agriculture, forestry & fishing",2020-03-08,2020-11-25,,0,inf,263,42050,0.0,0,0,0,0,1,0,Repaid,Fortnightly
+20000675_Loan_1,20000675,58-63 : Information & communication,2021-09-12,2021-10-02,2021-10-02,1,21.0,21,40650,0.0,0,0,0,0,0,1,Defaulted,Monthly
+20000684_Overdraft_1,20000684,"69-75 : Professional, scientific & technical",2021-10-19,2021-11-17,2021-11-17,1,30.0,30,33150,9.0,0,0,0,1,1,0,Available,Monthly
+20000702_Overdraft_1,20000702,"69-75 : Professional, scientific & technical",2021-03-15,2021-05-08,2021-05-08,1,55.0,55,37700,0.0,0,0,0,0,1,0,Defaulted,Monthly
+20000709_Loan_1,20000709,46 : Wholesale,2020-01-04,2020-01-29,,0,inf,26,98300,0.0,0,0,0,0,0,1,Repaid,Monthly
+20000720_Loan_1,20000720,"69-75 : Professional, scientific & technical",2020-05-16,2020-09-20,2020-09-20,1,128.0,128,15600,0.0,0,0,0,0,0,1,Defaulted,Monthly
+20000728_Overdraft_1,20000728,41-43 : Construction,2021-01-25,2024-01-25,,0,inf,1096,66400,8.0,0,0,0,0,1,0,Available,Weekly
+20000747_Overdraft_1,20000747,55-56 : Accommodation & food services,2021-11-22,2021-12-21,2021-12-21,1,30.0,30,201450,3.0,0,0,0,1,1,0,Available,Monthly
+20000756_Overdraft_1,20000756,41-43 : Construction,2021-11-21,2021-12-20,2021-12-20,1,30.0,30,36400,0.0,0,0,0,1,1,0,Repaid,Monthly
+20000779_Overdraft_1,20000779,"01-03 : Agriculture, forestry & fishing",2020-06-28,2021-02-02,2021-02-02,1,220.0,220,13850,0.0,3,31,1,0,1,0,Repaid,Monthly
+20000793_Overdraft_1,20000793,"90-99 : Arts, entertainment, recreation & other",2020-09-18,2023-09-18,,0,inf,1096,23300,13.0,0,0,0,0,1,0,Available,Monthly
+20000821_Overdraft_1,20000821,55-56 : Accommodation & food services,2020-09-06,2022-09-06,,0,inf,731,44200,4.0,0,0,0,0,1,0,Available,Monthly
+20000834_Overdraft_1,20000834,85 : Education,2020-02-26,2020-05-10,,0,inf,75,9750,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000837_Loan_1,20000837,"90-99 : Arts, entertainment, recreation & other",2020-07-13,2020-09-01,2020-09-01,1,51.0,51,31000,0.0,0,0,0,0,0,1,Defaulted,Monthly
+20000839_Overdraft_1,20000839,"90-99 : Arts, entertainment, recreation & other",2020-01-07,2020-01-26,,0,inf,20,10100,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000863_Overdraft_1,20000863,"01-03 : Agriculture, forestry & fishing",2020-05-02,2023-05-02,,0,inf,1096,21600,8.0,0,0,0,0,1,0,Available,Monthly
+20000864_Overdraft_1,20000864,"90-99 : Arts, entertainment, recreation & other",2021-05-20,2021-08-19,,0,inf,92,20800,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000872_Overdraft_1,20000872,47 : Retail,2021-11-29,2021-12-28,2021-12-28,1,30.0,30,69200,14.0,0,0,0,1,1,0,Available,Monthly
+20000875_Loan_1,20000875,49-53 : Transport & Storage (inc. postal),2020-04-15,2023-04-15,,0,inf,1096,24650,11.0,0,0,0,0,0,1,Disbursing,Monthly
+20000877_Overdraft_1,20000877,41-43 : Construction,2021-02-22,2023-02-22,,0,inf,731,39750,9.0,0,0,0,0,1,0,Available,Monthly
+20000894_Overdraft_1,20000894,58-63 : Information & communication,2021-02-16,2021-03-17,2021-03-17,1,30.0,30,115050,0.0,0,0,0,1,1,0,Repaid,Monthly
+20000898_Overdraft_1,20000898,"69-75 : Professional, scientific & technical",2020-02-26,2020-10-08,,0,inf,226,186750,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000919_Overdraft_1,20000919,"69-75 : Professional, scientific & technical",2020-02-25,2020-04-26,,0,inf,62,28250,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000929_Loan_1,20000929,"01-03 : Agriculture, forestry & fishing",2020-09-15,2021-02-17,,0,inf,156,22100,0.0,0,0,0,0,0,1,Repaid,Monthly
+20000936_Overdraft_1,20000936,"01-03 : Agriculture, forestry & fishing",2020-05-30,2021-05-30,,0,inf,366,28800,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000947_Overdraft_1,20000947,"01-03 : Agriculture, forestry & fishing",2021-05-12,2021-07-30,,0,inf,80,30350,0.0,0,0,0,0,1,0,Repaid,Monthly
+20000953_Loan_1,20000953,"01-03 : Agriculture, forestry & fishing",2021-07-20,2024-02-29,,0,inf,955,40250,6.0,0,0,0,0,0,1,Disbursing,Monthly
+20000970_Overdraft_1,20000970,86-88 : Health,2021-10-31,2021-11-29,2021-11-29,1,30.0,30,22800,0.0,0,0,0,1,1,0,Repaid,Monthly
+20000984_Overdraft_1,20000984,49-53 : Transport & Storage (inc. postal),2021-06-03,2021-06-26,2021-06-26,1,24.0,24,32450,0.0,0,0,0,1,1,0,Repaid,Monthly
+20000984_Loan_1,20000984,49-53 : Transport & Storage (inc. postal),2020-02-20,2020-09-09,2020-09-09,1,203.0,203,24650,0.0,3,42,1,0,0,1,Defaulted,Monthly

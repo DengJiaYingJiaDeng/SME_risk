@@ -39,7 +39,7 @@ def _make_industry_decision_summary(decision_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def run_experiment(config: ExperimentConfig) -> Dict:
-    tables = load_all_tables(config.data_dir)
+    tables = load_all_tables(config.data_dir, loan_file_name=config.loan_file_name)
     prepared = build_modeling_dataset(tables, config)
     loan_master = prepared.loan_master.copy()
     interval_data = prepared.interval_data.copy()
@@ -142,6 +142,7 @@ def run_experiment(config: ExperimentConfig) -> Dict:
     plot_top_coefficients(model.artifacts.model.summary, output_dir=output_dir, top_n=15)
 
     metrics = {
+        "loan_file_name": config.loan_file_name,
         "split_cutoff_date": str(pd.to_datetime(cutoff).date()),
         "n_train_loans": int(len(train_loans)),
         "n_test_loans": int(len(test_loans)),

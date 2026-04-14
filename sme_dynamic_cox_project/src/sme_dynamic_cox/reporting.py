@@ -5,10 +5,10 @@ from pathlib import Path
 from typing import Dict
 
 import matplotlib
-matplotlib.use('Agg')  # 必须在 import pyplot 之前调用
-
 import matplotlib.pyplot as plt
 import pandas as pd
+
+matplotlib.use("Agg")
 
 
 def ensure_output_dir(path: Path) -> None:
@@ -53,11 +53,12 @@ def plot_top_coefficients(model_summary: pd.DataFrame, output_dir: Path, top_n: 
 def build_readable_summary(metrics: Dict) -> str:
     lines = [
         "动态Cox模型实验摘要",
+        f"- 贷款源文件: {metrics.get('loan_file_name', 'N/A')}",
         f"- 数据切分时间点: {metrics.get('split_cutoff_date', 'N/A')}",
         f"- 训练集贷款数: {metrics.get('n_train_loans', 'N/A')}",
         f"- 测试集贷款数: {metrics.get('n_test_loans', 'N/A')}",
-        f"- 训练集违约数: {metrics.get('train_events', 'N/A')}",
-        f"- 测试集违约数: {metrics.get('test_events', 'N/A')}",
+        f"- 训练集事件数: {metrics.get('train_events', 'N/A')}",
+        f"- 测试集事件数: {metrics.get('test_events', 'N/A')}",
         f"- 训练集C-index: {metrics.get('train_c_index', float('nan')):.4f}",
         f"- 测试集C-index: {metrics.get('test_c_index', float('nan')):.4f}",
         f"- 动态预警AUC: {metrics.get('warning_roc_auc', float('nan')):.4f}",

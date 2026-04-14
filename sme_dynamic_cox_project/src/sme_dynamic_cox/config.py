@@ -9,6 +9,7 @@ from typing import List
 class ExperimentConfig:
     data_dir: Path
     output_dir: Path
+    loan_file_name: str = "Loan_Augmented_RealSignals.csv"
     snapshot_date: str = "2024-02-29"
     test_size: float = 0.3
     min_train_events: int = 4

@@ -41,42 +41,72 @@ def prepare_loan_master(loan: pd.DataFrame, snapshot_date: str) -> pd.DataFrame:
         )
 
     snapshot = pd.Timestamp(snapshot_date)
-    default_mask = (df["loan_status"].astype(str).str.lower() == "defaulted") & df["loan_default_date"].notna()
-    df["event_date"] = pd.NaT
-    df.loc[default_mask, "event_date"] = df.loc[default_mask, "loan_default_date"]
-    df["event"] = (
-        default_mask
-        & (df["event_date"] >= df["loan_start_date"])
-        & (df["event_date"] <= snapshot)
-    ).astype(int)
+    use_augmented_event = {"event_augmented", "event_date_augmented"}.issubset(df.columns)
 
-    default_obs_end = df["event_date"]
-    censor_end = df[["loan_satisfaction_date", "loan_date_due_to_close"]].min(axis=1)
-    censor_end = censor_end.fillna(snapshot)
-    censor_end = censor_end.where(censor_end <= snapshot, snapshot)
-    df["obs_end_date"] = np.where(df["event"] == 1, default_obs_end, censor_end)
-    df["obs_end_date"] = pd.to_datetime(df["obs_end_date"], errors="coerce")
+    if use_augmented_event:
+        df["event"] = pd.to_numeric(df["event_augmented"], errors="coerce").fillna(0).astype(int)
+        df["event_date"] = pd.to_datetime(df["event_date_augmented"], errors="coerce")
+
+        if "obs_end_date" in df.columns:
+            censor_end = pd.to_datetime(df["obs_end_date"], errors="coerce")
+        else:
+            censor_end = df[["loan_satisfaction_date", "loan_date_due_to_close"]].min(axis=1)
+        censor_end = censor_end.fillna(snapshot)
+        censor_end = censor_end.where(censor_end <= snapshot, snapshot)
+
+        valid_event = (
+            (df["event"] == 1)
+            & df["event_date"].notna()
+            & (df["event_date"] >= df["loan_start_date"])
+            & (df["event_date"] <= snapshot)
+        )
+        df.loc[~valid_event, "event"] = 0
+        df.loc[df["event"] == 0, "event_date"] = pd.NaT
+    else:
+        default_mask = (df["loan_status"].astype(str).str.lower() == "defaulted") & df["loan_default_date"].notna()
+        df["event_date"] = pd.NaT
+        df.loc[default_mask, "event_date"] = df.loc[default_mask, "loan_default_date"]
+        df["event"] = (
+            default_mask
+            & (df["event_date"] >= df["loan_start_date"])
+            & (df["event_date"] <= snapshot)
+        ).astype(int)
+
+        censor_end = df[["loan_satisfaction_date", "loan_date_due_to_close"]].min(axis=1)
+        censor_end = censor_end.fillna(snapshot)
+        censor_end = censor_end.where(censor_end <= snapshot, snapshot)
+
+    event_or_censor_end = np.where(df["event"] == 1, df["event_date"], censor_end)
+    df["obs_end_date"] = pd.to_datetime(event_or_censor_end, errors="coerce")
     df["obs_end_date"] = df["obs_end_date"].fillna(snapshot)
 
     invalid_end = df["obs_end_date"] < df["loan_start_date"]
     df.loc[invalid_end, "obs_end_date"] = df.loc[invalid_end, "loan_start_date"] + pd.Timedelta(days=1)
 
-    df["event_time"] = np.where(
-        df["event"] == 1,
-        (df["event_date"] - df["loan_start_date"]).dt.days + 1,
-        np.inf,
-    )
-    df["duration_days"] = (df["obs_end_date"] - df["loan_start_date"]).dt.days + 1
-    df["duration_days"] = df["duration_days"].clip(lower=1).astype(int)
+    event_time_days = (df["event_date"] - df["loan_start_date"]).dt.days + 1
+    df["event_time"] = np.where(df["event"] == 1, event_time_days, np.inf)
+    if "duration_augmented_days" in df.columns and use_augmented_event:
+        duration = pd.to_numeric(df["duration_augmented_days"], errors="coerce")
+    else:
+        duration = (df["obs_end_date"] - df["loan_start_date"]).dt.days + 1
+    df["duration_days"] = pd.to_numeric(duration, errors="coerce").fillna(1).clip(lower=1).astype(int)
 
     df["industry_group"] = _standardize_sector(df["primary_sector"])
     df["loan_original_amount"] = pd.to_numeric(df["loan_original_amount"], errors="coerce").fillna(0.0)
-    df["interest"] = pd.to_numeric(df["interest"], errors="coerce").fillna(0.0)
-    df["loan_number_of_missed_payments"] = (
-        pd.to_numeric(df["loan_number_of_missed_payments"], errors="coerce").fillna(0.0)
-    )
-    df["is_overdraft"] = pd.to_numeric(df.get("overdraft", 0), errors="coerce").fillna(0.0)
-    df["is_term_loan"] = pd.to_numeric(df.get("loan", 0), errors="coerce").fillna(0.0)
+    def _numeric_series(col: str, fallback_col: str | None = None, default: float = 0.0) -> pd.Series:
+        if col in df.columns:
+            return pd.to_numeric(df[col], errors="coerce").fillna(default)
+        if fallback_col is not None and fallback_col in df.columns:
+            return pd.to_numeric(df[fallback_col], errors="coerce").fillna(default)
+        return pd.Series(default, index=df.index, dtype=float)
+
+    df["interest"] = _numeric_series("interest")
+    df["loan_number_of_missed_payments"] = _numeric_series("loan_number_of_missed_payments")
+    df["total_time_payments_late"] = _numeric_series("total_time_payments_late")
+    df["behavior_distress_flag"] = _numeric_series("behavior_distress_flag")
+    df["origination_credit_distress_flag"] = _numeric_series("origination_credit_distress_flag")
+    df["is_overdraft"] = _numeric_series("is_overdraft", fallback_col="overdraft")
+    df["is_term_loan"] = _numeric_series("is_term_loan", fallback_col="loan")
 
     keep_cols = [
         "loan_key",
@@ -91,11 +121,17 @@ def prepare_loan_master(loan: pd.DataFrame, snapshot_date: str) -> pd.DataFrame:
         "loan_original_amount",
         "interest",
         "loan_number_of_missed_payments",
+        "total_time_payments_late",
+        "behavior_distress_flag",
+        "origination_credit_distress_flag",
         "is_overdraft",
         "is_term_loan",
         "loan_status",
         "loan_repayment_frequency",
     ]
+    for col in keep_cols:
+        if col not in df.columns:
+            df[col] = np.nan
     return df[keep_cols].copy()
 
 
@@ -409,6 +445,9 @@ def build_modeling_dataset(tables: Dict[str, pd.DataFrame], config: ExperimentCo
                 "loan_original_amount",
                 "interest",
                 "loan_number_of_missed_payments",
+                "total_time_payments_late",
+                "behavior_distress_flag",
+                "origination_credit_distress_flag",
                 "is_overdraft",
                 "is_term_loan",
                 "duration_days",

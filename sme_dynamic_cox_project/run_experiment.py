@@ -19,8 +19,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output-dir",
         type=str,
-        default=r"E:\my model\SME_model\sme_dynamic_cox_project\outputs1",
+        default=r"E:\my model\SME_model\sme_dynamic_cox_project\outputs\augmented",
         help="Path to save experiment outputs.",
+    )
+    parser.add_argument(
+        "--loan-file",
+        type=str,
+        default="Loan_Augmented_RealSignals.csv",
+        help="Loan file name under data-dir (e.g. Loan.csv or Loan_Augmented_RealSignals.csv).",
     )
     parser.add_argument("--snapshot-date", type=str, default="2024-02-29", help="Right-censor snapshot date.")
     parser.add_argument("--warning-horizon-days", type=int, default=90, help="Dynamic warning horizon in days.")
@@ -36,6 +42,7 @@ def main() -> None:
     config = ExperimentConfig(
         data_dir=Path(args.data_dir),
         output_dir=Path(args.output_dir),
+        loan_file_name=args.loan_file,
         snapshot_date=args.snapshot_date,
         warning_horizon_days=args.warning_horizon_days,
         decision_horizon_days=args.decision_horizon_days,
@@ -51,4 +58,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
