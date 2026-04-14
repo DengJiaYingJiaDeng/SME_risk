@@ -10,6 +10,7 @@ from sklearn.metrics import (
     precision_score,
     recall_score,
     roc_auc_score,
+    roc_curve,
 )
 
 
@@ -107,3 +108,100 @@ def classification_metrics(y_true: pd.Series, y_score: pd.Series, threshold: flo
         "roc_auc": float(roc_auc_score(y_true, y_score)) if y_true.nunique() > 1 else float("nan"),
     }
     return metrics
+
+
+def ks_statistic(y_true: pd.Series, y_score: pd.Series) -> float:
+    y_true = pd.to_numeric(y_true, errors="coerce").fillna(0).astype(int)
+    y_score = pd.to_numeric(y_score, errors="coerce").fillna(0.0)
+    if y_true.nunique() < 2:
+        return float("nan")
+    fpr, tpr, _ = roc_curve(y_true, y_score)
+    return float(np.max(tpr - fpr))
+
+
+def brier_score(y_true: pd.Series, y_prob: pd.Series) -> float:
+    y_true = pd.to_numeric(y_true, errors="coerce").fillna(0).astype(int)
+    y_prob = pd.to_numeric(y_prob, errors="coerce").fillna(0.0).clip(0.0, 1.0)
+    return float(np.mean((y_prob - y_true) ** 2))
+
+
+def brier_skill_score(y_true: pd.Series, y_prob: pd.Series) -> float:
+    y = pd.to_numeric(y_true, errors="coerce").fillna(0).astype(int)
+    p = pd.to_numeric(y_prob, errors="coerce").fillna(0.0).clip(0.0, 1.0)
+    br = brier_score(y, p)
+    prevalence = float(y.mean())
+    reference = prevalence * (1.0 - prevalence)
+    if reference <= 1e-12:
+        return float("nan")
+    return float(1.0 - br / reference)
+
+
+def label_event_within_horizon(
+    durations: pd.Series,
+    events: pd.Series,
+    horizon_days: int,
+) -> pd.Series:
+    d = pd.to_numeric(durations, errors="coerce").fillna(np.inf)
+    e = pd.to_numeric(events, errors="coerce").fillna(0).astype(int)
+    return ((e == 1) & (d <= horizon_days)).astype(int)
+
+
+def evaluate_time_dependent_metrics(
+    durations: pd.Series,
+    events: pd.Series,
+    prob_by_horizon: Dict[int, pd.Series],
+) -> pd.DataFrame:
+    rows = []
+    for horizon, probs in sorted(prob_by_horizon.items(), key=lambda x: x[0]):
+        y_h = label_event_within_horizon(durations, events, horizon)
+        p_h = pd.to_numeric(probs, errors="coerce").fillna(0.0).clip(0.0, 1.0)
+        auc = float(roc_auc_score(y_h, p_h)) if y_h.nunique() > 1 else float("nan")
+        ap = float(average_precision_score(y_h, p_h)) if y_h.nunique() > 1 else float("nan")
+        ks = ks_statistic(y_h, p_h)
+        brier = brier_score(y_h, p_h)
+        prevalence = float(y_h.mean())
+        reference = prevalence * (1.0 - prevalence)
+        brier_skill = float(1.0 - brier / reference) if reference > 1e-12 else float("nan")
+        rows.append(
+            {
+                "horizon_days": int(horizon),
+                "positive_rate": float(y_h.mean()),
+                "time_dependent_auc": auc,
+                "cumulative_auc": auc,
+                "avg_precision": ap,
+                "ks_statistic": ks,
+                "brier_score": brier,
+                "brier_skill_score": brier_skill,
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def build_tradeoff_curve(
+    scores: pd.Series,
+    events: pd.Series,
+    quantiles: int = 99,
+) -> pd.DataFrame:
+    s = pd.to_numeric(scores, errors="coerce")
+    y = pd.to_numeric(events, errors="coerce").fillna(0).astype(int)
+    valid = s.notna()
+    s = s[valid]
+    y = y[valid]
+    if s.empty:
+        return pd.DataFrame(columns=["threshold", "approval_rate", "approved_count", "bad_debt_rate"])
+    grid = np.unique(np.quantile(s, np.linspace(0.01, 0.99, quantiles)))
+    rows = []
+    for thr in grid:
+        approved = s <= thr
+        approval_rate = float(approved.mean())
+        approved_n = int(approved.sum())
+        bad_rate = float(y[approved].mean()) if approved_n > 0 else float("nan")
+        rows.append(
+            {
+                "threshold": float(thr),
+                "approval_rate": approval_rate,
+                "approved_count": approved_n,
+                "bad_debt_rate": bad_rate,
+            }
+        )
+    return pd.DataFrame(rows).sort_values("approval_rate").reset_index(drop=True)

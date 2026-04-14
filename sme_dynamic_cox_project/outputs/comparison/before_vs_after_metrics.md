@@ -5,8 +5,17 @@
 | train_epv_proxy | 0.290323 | 0.548387 | 0.258065 | True |
 | train_c_index | 0.712025 | 0.811953 | 0.099928 | True |
 | test_c_index | 0.654321 | 0.688406 | 0.034085 | True |
+| warning_ks_90d | 0.668571 | 0.760000 | 0.091429 | True |
+| warning_brier_skill_90d | -0.146477 | 0.178814 | 0.325291 | True |
+| mean_time_brier_skill | -0.145273 | -0.132832 | 0.012441 | True |
 | warning_precision | 0.055556 | 0.347826 | 0.292271 | True |
 | warning_recall | 0.500000 | 0.666667 | 0.166667 | True |
 | warning_f1 | 0.100000 | 0.457143 | 0.357143 | True |
 | warning_avg_precision | 0.232971 | 0.551066 | 0.318095 | True |
 | warning_roc_auc | 0.883571 | 0.906667 | 0.023095 | True |
+| mean_time_auc | 0.680231 | 0.662247 | -0.017983 | False |
+| time_auc_30d | 0.771429 | 0.619318 | -0.152110 | False |
+| time_auc_90d | 0.646465 | 0.659091 | 0.012626 | True |
+| time_auc_180d | 0.656566 | 0.676136 | 0.019571 | True |
+| time_auc_360d | 0.646465 | 0.694444 | 0.047980 | True |
+| max_approval_rate_at_3pct_bad_debt | 0.111111 | 0.037037 | -0.074074 | False |

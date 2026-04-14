@@ -31,6 +31,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--snapshot-date", type=str, default="2024-02-29", help="Right-censor snapshot date.")
     parser.add_argument("--warning-horizon-days", type=int, default=90, help="Dynamic warning horizon in days.")
     parser.add_argument("--decision-horizon-days", type=int, default=180, help="Loan decision horizon in days.")
+    parser.add_argument(
+        "--evaluation-horizons",
+        type=str,
+        default="30,90,180,360",
+        help="Comma-separated horizons (days) for time-dependent AUC/Brier/KS.",
+    )
     parser.add_argument("--test-size", type=float, default=0.3, help="Approximate test set ratio.")
     parser.add_argument("--penalizer", type=float, default=0.25, help="Cox regularization strength.")
     parser.add_argument("--l1-ratio", type=float, default=0.0, help="Cox elastic-net l1 ratio.")
@@ -46,6 +52,7 @@ def main() -> None:
         snapshot_date=args.snapshot_date,
         warning_horizon_days=args.warning_horizon_days,
         decision_horizon_days=args.decision_horizon_days,
+        evaluation_horizons_days=[int(x) for x in str(args.evaluation_horizons).split(",") if str(x).strip()],
         test_size=args.test_size,
         penalizer=args.penalizer,
         l1_ratio=args.l1_ratio,

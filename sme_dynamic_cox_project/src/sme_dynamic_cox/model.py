@@ -139,6 +139,32 @@ class DynamicCoxRiskModel:
         hazard = artifacts.model.predict_partial_hazard(X_df)
         return pd.Series(np.asarray(hazard).reshape(-1), index=df.index, name="partial_hazard")
 
+    def transform_features(self, df: pd.DataFrame) -> pd.DataFrame:
+        artifacts = self._get_artifacts()
+        X_df, _, _ = self._prepare_feature_matrix(
+            df,
+            artifacts.feature_cols,
+            feature_medians=artifacts.feature_medians,
+            scaler=artifacts.scaler,
+            fit=False,
+        )
+        return X_df
+
+    def linear_predictor(self, df: pd.DataFrame) -> pd.Series:
+        artifacts = self._get_artifacts()
+        X_df = self.transform_features(df)
+        beta = artifacts.model.params_.reindex(artifacts.feature_cols).fillna(0.0)
+        lp = X_df.mul(beta, axis=1).sum(axis=1)
+        return pd.Series(lp.values, index=df.index, name="linear_predictor")
+
+    def local_feature_contributions(self, df: pd.DataFrame) -> pd.DataFrame:
+        artifacts = self._get_artifacts()
+        X_df = self.transform_features(df)
+        beta = artifacts.model.params_.reindex(artifacts.feature_cols).fillna(0.0)
+        contrib = X_df.mul(beta, axis=1)
+        contrib.index = df.index
+        return contrib
+
     def predict_default_probability(self, df: pd.DataFrame, horizon_days: int = 90) -> pd.Series:
         scores = self.predict_partial_hazard(df)
         probs = []

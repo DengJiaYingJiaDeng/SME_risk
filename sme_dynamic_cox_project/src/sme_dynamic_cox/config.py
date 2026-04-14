@@ -18,6 +18,7 @@ class ExperimentConfig:
     l1_ratio: float = 0.0
     warning_horizon_days: int = 90
     decision_horizon_days: int = 180
+    evaluation_horizons_days: List[int] = field(default_factory=lambda: [30, 90, 180, 360])
     min_samples_per_industry: int = 6
     loan_approval_gain: float = 1.0
     loan_default_loss: float = 4.0

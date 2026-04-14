@@ -1,55 +1,64 @@
-# 中小型企业信贷评估与动态违约预警（动态 Cox）
+# 中小型企业信贷评估与动态违约预警（Dynamic Cox）
 
-本项目用于课题《中小型企业信贷评估和违约风险预测》，实现：
+本项目实现：
 - 分行业放贷决策（Approve / Reject）
 - 放贷后动态违约预警（RED / AMBER / GREEN）
-- 基于时间变化协变量的动态 Cox 建模
+- 动态 Cox 风险建模
+- 论文级评估指标与图表（C-index、ROC-AUC、KS、时变AUC、Brier、生存分层图、局部解释、策略折中曲线）
 
-## 1. 数据
-默认数据目录：
-`E:\my model\SME_model\SME - Synthetic UK Businesses financial statistics`
+## 1. 数据与默认设置
+- 数据目录：`E:\my model\SME_model\SME - Synthetic UK Businesses financial statistics`
+- 默认贷款文件：`Loan_Augmented_RealSignals.csv`
+- 如需回到原始贷款数据：`--loan-file Loan.csv`
 
-当前训练管线已默认切换为扩充后贷款文件：
-- `Loan_Augmented_RealSignals.csv`
-
-如需使用原始贷款文件，可显式传参：
-- `--loan-file Loan.csv`
-
-## 2. 一键运行
-在项目根目录执行：
-
+## 2. 运行实验
 ```bash
 python run_experiment.py
 ```
 
-常用参数：
-
+示例：
 ```bash
-python run_experiment.py --loan-file Loan_Augmented_RealSignals.csv --output-dir "E:\my model\SME_model\sme_dynamic_cox_project\outputs\augmented"
+python run_experiment.py --loan-file Loan_Augmented_RealSignals.csv --evaluation-horizons 30,90,180,360
 ```
 
 ## 3. 扩充前后对比
-运行下面命令自动完成“扩充前 vs 扩充后”两组实验并输出对比表：
-
 ```bash
 python run_before_after_comparison.py
 ```
 
-对比结果目录：
-`E:\my model\SME_model\sme_dynamic_cox_project\outputs\comparison`
+输出目录：`E:\my model\SME_model\sme_dynamic_cox_project\outputs\comparison`
 
 关键文件：
 - `before_vs_after_metrics.csv`
 - `before_vs_after_metrics.md`
 - `comparison_summary.json`
 
-## 4. 核心输出
-每次实验会产出：
+## 4. 新企业预测
+使用新贷款申请 CSV 进行评分：
+```bash
+python predict_new_sme.py --new-loan-file "E:\path\to\new_loans.csv"
+```
+
+可选增量数据：
+- `--new-business-file`
+- `--new-credit-rating-file`
+- `--new-credit-account-file`
+- `--new-factoring-file`
+- `--new-credit-card-file`
+
+输出：`outputs/new_sme_predictions.csv`
+
+## 5. 主要输出文件
 - `metrics.json`
-- `experiment_summary.txt`
-- `industry_approval_policy.csv`
-- `loan_decisions.csv`
-- `industry_warning_policy.csv`
-- `dynamic_warning_full.csv`
-- `dynamic_warning_latest.csv`
+- `time_dependent_metrics.csv`
+- `strategy_tradeoff_curve.csv`
+- `stratified_survival_summary.csv`
+- `local_explanations.csv`
+- `partial_dependence_data.csv`
+- `top_coefficients.png`
+- `time_dependent_metrics_curve.png`
+- `stratified_survival_curve.png`
+- `strategy_tradeoff_curve.png`
+- `local_explain_waterfall_*.png`
+- `partial_dependence_plots.png`
 

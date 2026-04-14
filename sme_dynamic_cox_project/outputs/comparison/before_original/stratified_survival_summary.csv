@@ -1,0 +1,3 @@
+﻿risk_group,n_loans,event_rate,median_duration_days,avg_risk_score,split_threshold
+High-Risk,20,0.1,86.0,1.4923817845941716,1.0311140894969735
+Prime,16,0.0625,366.0,0.8205292723683559,1.0311140894969735
